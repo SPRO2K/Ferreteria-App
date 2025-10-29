@@ -1,0 +1,18 @@
+{
+  "watch": [
+    "src/controllers/",
+    "src/routes/",
+    "src/middlewares/",
+    "src/utils/",
+    "app.js"
+  ],
+  "ext": "js,json",
+  "ignore": [
+    "node_modules/",
+    "src/public/",
+    "src/views/"
+  ],
+  "verbose": true,
+  "restartable": "rs",
+  "exec": "node app.js"
+}

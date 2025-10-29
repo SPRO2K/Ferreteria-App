@@ -1,0 +1,57 @@
+{{#unless isFiltering}}
+    {{#if ofertas.length}}
+    <section class="mb-5">
+        <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {{#each ofertas}}
+                <div class="carousel-item {{#if @first}}active{{/if}}">
+                    <img src="{{this.imagen}}" class="d-block w-100" alt="{{this.nombre}}">
+                    <div class="carousel-caption">
+                        <h1 class="display-2">{{this.nombre}}</h1>
+                        <p class="lead fs-4">¡OFERTA IMPERDIBLE! Llévatelo por solo ${{this.precio_oferta}}</p>
+                        <a href="/producto/{{this.id_producto}}" class="btn btn-primary btn-lg mt-3">Comprar Ahora</a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+        </div>
+    </section>
+    {{/if}}
+{{/unless}}
+
+<section>
+    <h2 class="section-title text-center mb-5">{{#if isFiltering}}Resultados de la Búsqueda{{else}}Productos Populares{{/if}}</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        {{#each productos}}
+        <div class="col">
+            <div class="card h-100 product-card">
+                <a href="/producto/{{this.id_producto}}" class="text-decoration-none">
+                    <div class="card-img-container"><img src="{{this.imagen}}" class="card-img-top" alt="{{this.nombre}}" style="height: 180px; object-fit: contain;"></div>
+                </a>
+                <div class="card-body">
+                    <h3 class="card-title h6"><a href="/producto/{{this.id_producto}}" class="text-decoration-none">{{this.nombre}}</a></h3>
+                    <p class="card-text">{{this.categoria_nombre}}</p>
+                    <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                        <div>
+                            {{#if this.es_oferta}}
+                                <span class="card-price fs-5" style="color: var(--color-primary);">${{this.precio_oferta}}</span>
+                                <del class="text-muted small ms-2">${{this.precio_venta}}</del>
+                            {{else}}
+                                <span class="card-price">${{this.precio_venta}}</span>
+                            {{/if}}
+                        </div>
+                        <div class="action-buttons">
+                            <a href="/producto/{{this.id_producto}}" class="btn buy-now-btn" title="Ver detalles"><i class="bi bi-box-arrow-in-right"></i></a>
+                            <button class="btn add-to-cart-btn" data-id="{{this.id_producto}}" title="Añadir al carrito"><i class="bi bi-plus-lg"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-12"><div class="text-center py-5"><h4 class="fw-light" style="color: var(--color-text-secondary);">No se encontraron productos.</h4></div></div>
+        {{/each}}
+    </div>
+</section>

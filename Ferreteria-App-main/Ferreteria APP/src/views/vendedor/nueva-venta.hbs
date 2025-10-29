@@ -1,0 +1,114 @@
+<div class="pos-container">
+    <!-- Columna Izquierda: Búsqueda y Resultados -->
+    <div class="pos-panel">
+        <div class="pos-header">
+            <h5 class="mb-0">Búsqueda de Productos</h5>
+            <a href="/vendedor" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-arrow-left"></i> Volver al Panel
+            </a>
+        </div>
+        <div class="pos-search">
+            <i class="bi bi-search"></i>
+            <input type="text" id="productSearchInput" class="form-control" placeholder="Buscar por nombre o código...">
+        </div>
+        <div id="productList" class="pos-product-list">
+            {{#each initialProducts}}
+            <a href="#" class="product-item {{#if (lt stock 1)}}disabled{{/if}}" 
+               data-id="{{this.id_producto}}" data-nombre="{{this.nombre}}" data-precio="{{this.precio_venta}}" data-stock="{{this.stock}}"
+               onclick="addProductToCart(event)">
+                <div>
+                    <span class="product-item-name">{{this.nombre}}</span>
+                    <small class="product-item-stock">Stock: {{this.stock}}</small>
+                </div>
+                <span class="product-item-price">${{this.precio_venta}}</span>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+
+    <!-- Columna Derecha: Carrito de Venta -->
+    <div class="pos-panel">
+        <div class="pos-header">
+            <h5 class="mb-0">Detalle de Venta</h5>
+            <button id="newSaleBtn" class="btn btn-outline-primary btn-sm" title="Empezar Nueva Venta">
+                <i class="bi bi-plus-circle"></i> Nueva Venta
+            </button>
+        </div>
+        <div class="pos-body">
+            <div class="pos-meta-grid">
+                <select id="sucursalSelect" class="form-select">
+                    <option value="">-- Sucursal --</option>
+                    {{#each sucursales}}<option value="{{this.id_sucursal}}">{{this.nombre}}</option>{{/each}}
+                </select>
+                <div class="position-relative">
+                    <input type="text" id="clientSearchInput" class="form-control" placeholder="Buscar cliente...">
+                    <div id="clientList" class="autocomplete-results"></div>
+                </div>
+            </div>
+            <div class="form-check form-switch my-2">
+                <input class="form-check-input" type="checkbox" id="genericClientCheck">
+                <label class="form-check-label" for="genericClientCheck">Cliente Mostrador</label>
+            </div>
+            <div class="selected-client-display" id="selectedClientWrapper" style="display: none;">
+                <i class="bi bi-person-check-fill"></i>
+                <span id="selectedClientDisplay"></span>
+                <button id="clearClientBtn" class="btn-clear-client"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <hr>
+            <div id="saleCart" class="pos-sale-cart">
+                <p class="empty-cart-text">Añade productos para empezar.</p>
+            </div>
+        </div>
+        <div class="pos-footer">
+            <div class="pos-totals">
+                <div><span>Subtotal:</span><span id="subtotalAmount">$0.00</span></div>
+                <div><span>IVA (15%):</span><span id="ivaAmount">$0.00</span></div>
+                <div class="total-row"><span>Total:</span><span id="totalAmount">$0.00</span></div>
+            </div>
+            <div class="pos-actions">
+                <select id="paymentMethod" class="form-select"><option>Efectivo</option><option>Tarjeta</option><option>Transferencia</option></select>
+                <button id="processPaymentBtn" class="btn btn-success">Procesar Pago</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Usamos las variables globales de color, pero con un diseño claro */
+    :root { 
+        --pos-bg: #f8f9fa; --pos-surface: #ffffff; --pos-border: #dee2e6;
+        --pos-text-primary: #212529; --pos-text-secondary: #6c757d;
+        --pos-primary: #0d6efd; --pos-success: #198754;
+    }
+    body { background-color: var(--pos-bg) !important; font-family: 'Poppins', sans-serif; color: var(--pos-text-primary); }
+    .pos-container { display: grid; grid-template-columns: 3fr 2fr; gap: 1rem; height: 100vh; padding: 1rem; }
+    .pos-panel { background-color: var(--pos-surface); border-radius: 12px; display: flex; flex-direction: column; border: 1px solid var(--pos-border); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .pos-header { padding: 1rem; border-bottom: 1px solid var(--pos-border); display: flex; justify-content: space-between; align-items: center; }
+    .pos-search { padding: 1rem; position: relative; }
+    .pos-search .form-control { background-color: var(--pos-bg); padding-left: 2.5rem; }
+    .pos-search i { position: absolute; left: 1.75rem; top: 50%; transform: translateY(-50%); color: var(--pos-text-secondary); }
+    .pos-product-list { flex-grow: 1; overflow-y: auto; padding: 0 1rem 1rem 1rem; }
+    .product-item { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; border-bottom: 1px solid var(--pos-border); color: var(--pos-text-primary); text-decoration: none; transition: background-color 0.2s ease; border-radius: 8px; }
+    .product-item:hover { background-color: #e9ecef; }
+    .product-item.disabled { color: #adb5bd; pointer-events: none; }
+    .product-item-name { font-weight: 500; }
+    .product-item-stock { color: var(--pos-text-secondary); font-size: 0.8rem; }
+    .pos-body { flex-grow: 1; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; }
+    .pos-footer { padding: 1rem; border-top: 1px solid var(--pos-border); background-color: var(--pos-bg); }
+    .pos-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-select, .form-control { background-color: var(--pos-bg); color: var(--pos-text-primary); border-color: var(--pos-border); }
+    .selected-client-display { display: flex; align-items: center; gap: 0.5rem; background-color: #e9ecef; padding: 0.5rem 1rem; border-radius: 8px; }
+    .btn-clear-client { background: transparent; border: none; color: var(--pos-text-secondary); }
+    .autocomplete-results { position: absolute; width: 100%; z-index: 1000; }
+    .autocomplete-results .list-group-item { background-color: var(--pos-surface); border-color: var(--pos-border); color: var(--pos-text-primary); }
+    .autocomplete-results .list-group-item:hover { background-color: #e9ecef; }
+    .pos-sale-cart { flex-grow: 1; }
+    .pos-sale-cart .empty-cart-text { text-align: center; color: var(--pos-text-secondary); margin-top: 2rem; }
+    .sale-item { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; margin-bottom: 0.5rem; background-color: var(--pos-bg); border-radius: 8px; }
+    .pos-totals { font-size: 0.9rem; color: var(--pos-text-secondary); }
+    .pos-totals div { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+    .pos-totals .total-row { font-size: 1.5rem; font-weight: 600; color: var(--pos-text-primary); margin-top: 0.5rem; }
+    .pos-totals #totalAmount { color: var(--pos-primary); }
+    .pos-actions { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem; margin-top: 1rem; }
+    hr { border-color: var(--pos-border); }
+</style>

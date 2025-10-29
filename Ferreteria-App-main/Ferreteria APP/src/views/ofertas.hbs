@@ -1,0 +1,17 @@
+<section>
+    <h2 class="section-title text-center mb-5">Ofertas Especiales</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        {{#each productos}}
+        <div class="col">
+            {{> product-card this}} <!-- Reutilizamos el partial de la tarjeta de producto -->
+        </div>
+        {{else}}
+        <div class="col-12">
+            <div class="text-center py-5">
+                <h4 class="fw-light" style="color: var(--color-text-secondary);">No hay ofertas disponibles en este momento.</h4>
+                <p><a href="/" class="btn btn-primary mt-3">Volver a la tienda</a></p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section>

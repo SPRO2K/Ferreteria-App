@@ -1,0 +1,57 @@
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-white">Gestionar Ofertas del Carrusel</h1>
+    <a href="/dashboard" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+</div>
+
+<div class="row">
+    <!-- Formulario para añadir/actualizar ofertas -->
+    <div class="col-md-4">
+        <div class="card admin-card form-view-container">
+            <div class="card-header"><h5 class="card-title">Añadir/Actualizar Oferta</h5></div>
+            <div class="card-body">
+                <form action="/productos/ofertas/add" method="POST">
+                    <div class="mb-3">
+                        <label for="id_producto" class="form-label">Seleccionar Producto</label>
+                        <select name="id_producto" class="form-select" required>
+                            <option value="">-- Elige un producto --</option>
+                            {{#each noOfertas}}
+                            <option value="{{this.id_producto}}">{{this.nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio_oferta" class="form-label">Nuevo Precio de Oferta ($)</label>
+                        <input type="number" step="0.01" name="precio_oferta" class="form-control" placeholder="Ej: 19.99" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Establecer Oferta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de ofertas actuales -->
+    <div class="col-md-8">
+         <div class="card admin-card">
+            <div class="card-header"><h5 class="card-title">Productos en Oferta Actualmente</h5></div>
+            <div class="card-body">
+                <div class="list-group">
+                    {{#each ofertas}}
+                    <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-secondary text-white">
+                        <div class="d-flex align-items-center">
+                            <img src="{{this.imagen}}" alt="{{this.nombre}}" style="width: 50px; height: 50px; object-fit: contain;" class="me-3 rounded p-1 bg-light">
+                            <div>
+                                <span>{{this.nombre}}</span><br>
+                                <small class="text-muted">Precio Original: <del>${{this.precio_venta}}</del> -> <strong style="color: var(--color-primary);">Oferta: ${{this.precio_oferta}}</strong></small>
+                            </div>
+                        </div>
+                        <a href="/productos/ofertas/remove/{{this.id_producto}}" class="btn btn-sm btn-outline-danger" title="Quitar de ofertas"><i class="bi bi-trash-fill"></i></a>
+                    </div>
+                    {{else}}
+                    <p class="text-muted p-3 text-center">No hay productos en oferta.</p>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

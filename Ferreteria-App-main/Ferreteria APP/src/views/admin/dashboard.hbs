@@ -1,0 +1,48 @@
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-3">
+        <h1 class="display-6 fw-bold" style="color: #212529;">Panel de Administrador</h1>
+        <p class="fs-5" style="color: #6c757d;">Bienvenido, {{user.nombre}}. Desde aquí puedes gestionar los aspectos clave de la tienda.</p>
+    </div>
+</div>
+<div class="row g-4">
+    <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column justify-content-between p-4">
+                <div><h5 class="card-title" style="color: #212529;">Gestionar Productos</h5><p class="card-text" style="color: #6c757d;">Añadir, editar y eliminar productos del catálogo.</p></div>
+                <a href="/productos" class="btn btn-primary mt-3">Ir a Productos</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column justify-content-between p-4">
+                <div><h5 class="card-title" style="color: #212529;">Órdenes de Compra</h5><p class="card-text" style="color: #6c757d;">Crear y supervisar las órdenes a proveedores.</p></div>
+                <a href="/admin/ordenes-compra" class="btn btn-primary mt-3">Gestionar Órdenes</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column justify-content-between p-4">
+                <div><h5 class="card-title" style="color: #212529;">Gestionar Ofertas</h5><p class="card-text" style="color: #6c757d;">Controlar los productos del carrusel de inicio.</p></div>
+                <a href="/productos/ofertas" class="btn btn-primary mt-3">Ir a Ofertas</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column justify-content-between p-4">
+                <div><h5 class="card-title" style="color: #212529;">Gestionar Empleados</h5><p class="card-text" style="color: #6c757d;">Crear y administrar las cuentas de empleados y roles.</p></div>
+                <a href="/admin/empleados" class="btn btn-primary mt-3">Ir a Empleados</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column justify-content-between p-4">
+                <div><h5 class="card-title" style="color: #212529;">Historial de Ventas</h5><p class="card-text" style="color: #6c757d;">Supervisar todas las transacciones de la empresa.</p></div>
+                <a href="/admin/ventas" class="btn btn-primary mt-3">Ver Ventas</a>
+            </div>
+        </div>
+    </div>
+</div>

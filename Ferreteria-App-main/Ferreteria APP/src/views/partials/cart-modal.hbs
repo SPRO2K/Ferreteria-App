@@ -1,0 +1,126 @@
+<div class="modal fade" id="cartModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cartModalLabel"><i class="bi bi-bag-check-fill me-2"></i>Mi Carrito de Compras</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="cartContent"><!-- Contenido dinámico aquí --></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
+        <a href="/checkout" class="btn btn-primary">Proceder al Pago</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    #cartModal .modal-content {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+    #cartModal .modal-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #dee2e6;
+        padding: 1.25rem 1.5rem;
+    }
+    #cartModal .modal-title {
+        color: #212529;
+        font-weight: 600;
+    }
+    #cartModal .modal-body {
+        padding: 0.5rem 0; /* Espacio vertical, sin padding horizontal */
+        color: #212529;
+    }
+    #cartModal .modal-footer {
+        background-color: #f8f9fa;
+        border-top: 1px solid #dee2e6;
+        padding: 1rem 1.5rem;
+    }
+
+    /* --- NUEVO DISEÑO DE "MINI TARJETAS" --- */
+    .cart-items-container {
+        max-height: 50vh;
+        overflow-y: auto;
+        padding: 0 1.5rem;
+    }
+    .cart-item {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #dee2e6;
+    }
+    .cart-item:last-child {
+        border-bottom: none;
+    }
+    .cart-item-img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+    .cart-item-details {
+        line-height: 1.4;
+    }
+    .cart-item-title {
+        font-weight: 600;
+        margin: 0;
+    }
+    .cart-item-meta {
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+    .cart-item-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .cart-item-price {
+        font-weight: 600;
+        min-width: 70px;
+        text-align: right;
+    }
+    .btn-icon {
+        background: #e9ecef;
+        color: #6c757d;
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+    .btn-icon:hover {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    /* Resumen del total */
+    .cart-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 1.5rem;
+        border-top: 1px solid #dee2e6;
+        margin-top: 0.5rem;
+    }
+    .cart-summary-label {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #6c757d;
+    }
+    .cart-summary-total {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-primary, #0d6efd);
+    }
+</style>

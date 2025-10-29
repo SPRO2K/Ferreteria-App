@@ -1,0 +1,50 @@
+<!-- Encabezado de Bienvenida -->
+<div class="p-5 mb-4 admin-header">
+    <div class="container-fluid py-3">
+        <h1 class="display-6 fw-bold">Panel de Vendedor</h1>
+        <p class="fs-5" style="color: var(--color-text-secondary);">
+            Bienvenido, {{user.nombre}}. Desde aquí puedes gestionar las ventas de la sucursal.
+        </p>
+    </div>
+</div>
+
+<!-- Tarjetas de Acceso Rápido a Módulos -->
+<div class="row g-4">
+
+    <!-- Tarjeta para Punto de Venta -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 admin-card text-center">
+            <div class="card-body p-5 d-flex flex-column justify-content-center">
+                <i class="bi bi-cart-plus-fill" style="font-size: 4rem; color: var(--color-primary);"></i>
+                <h3 class="card-title mt-4">Punto de Venta</h3>
+                <p class="card-text">Iniciar una nueva transacción para un cliente.</p>
+                <a href="/vendedor/nueva-venta" class="btn btn-primary btn-lg mt-3">Iniciar Nueva Venta</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta para Historial de Ventas (BOTÓN ACTIVADO) -->
+     <div class="col-md-6 col-lg-4">
+        <div class="card h-100 admin-card text-center">
+            <div class="card-body p-5 d-flex flex-column justify-content-center">
+                <i class="bi bi-receipt" style="font-size: 4rem; color: var(--color-text-secondary);"></i>
+                <h3 class="card-title mt-4">Mis Ventas Recientes</h3>
+                <p class="card-text">Consultar el historial de las últimas ventas que has realizado.</p>
+                <a href="/vendedor/historial" class="btn btn-primary btn-lg mt-3">Ver Mi Historial</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta para Consulta de Stock (Funcionalidad Futura) -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 admin-card text-center">
+            <div class="card-body p-5 d-flex flex-column justify-content-center">
+                <i class="bi bi-box-seam-fill" style="font-size: 4rem; color: var(--color-text-secondary);"></i>
+                <h3 class="card-title mt-4">Consultar Inventario</h3>
+                <p class="card-text">Verificar el stock disponible de los productos en la tienda.</p>
+                <a href="#" class="btn btn-secondary disabled btn-lg mt-3">Consultar Stock</a>
+            </div>
+        </div>
+    </div>
+    
+</div>

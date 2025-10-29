@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Gestión de Empleados</h1>
+    <div>
+        <a href="/admin/empleados/add" class="btn btn-primary me-2"><i class="bi bi-person-plus-fill me-2"></i>Crear Nuevo Empleado</a>
+        <a href="/dashboard" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver al Dashboard</a>
+    </div>
+</div>
+
+<div class="card admin-card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each empleados}}
+                    <tr>
+                        <td>{{this.nombre}} {{this.apellido}}</td>
+                        <td>{{this.correo}}</td>
+                        <td>{{this.rol_nombre}}</td>
+                        <td>
+                            {{#if (eq this.activo 1)}}
+                                <span class="badge bg-success">Activo</span>
+                            {{else}}
+                                <span class="badge bg-danger">Inactivo</span>
+                            {{/if}}
+                        </td>
+                        <td>
+                            <a href="/admin/empleados/edit/{{this.id_usuario}}" class="btn btn-sm btn-warning">Editar</a>
+                        </td>
+                    </tr>
+                    {{else}}
+                    <tr>
+                        <td colspan="5" class="text-center p-4">No hay empleados registrados.</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

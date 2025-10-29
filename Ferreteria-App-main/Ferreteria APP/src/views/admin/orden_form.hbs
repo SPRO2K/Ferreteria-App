@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card admin-card form-view-container">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3>Nueva Orden de Compra</h3>
+                <a href="/admin/ordenes-compra" class="btn btn-secondary">Cancelar</a>
+            </div>
+            <div class="card-body p-4">
+                <form action="/admin/ordenes-compra/nueva" method="POST" class="admin-form">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="id_proveedor" class="form-label">Proveedor</label>
+                            <select name="id_proveedor" id="id_proveedor" class="form-select" required>
+                                <option value="">-- Seleccionar Proveedor --</option>
+                                {{#each proveedores}}
+                                <option value="{{this.id_proveedor}}">{{this.nombre}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <hr>
+                    <h5>Productos en la Orden</h5>
+                    <div id="product-rows">
+                        <!-- Las filas de productos se añadirán aquí dinámicamente -->
+                    </div>
+                    <button type="button" id="addProductRow" class="btn btn-outline-primary mt-2"><i class="bi bi-plus-circle"></i> Añadir Producto</button>
+                    <hr>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success btn-lg">Crear Orden de Compra</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="product-row-template">
+    <div class="row g-2 mb-2 align-items-center product-row">
+        <div class="col-md-5">
+            <!-- CORRECCIÓN: El name ahora es 'productos' -->
+            <select name="productos" class="form-select" required>
+                <option value="">-- Seleccionar Producto --</option>
+                {{#each productos}}
+                <option value="{{this.id_producto}}">{{this.nombre}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="col-md-3">
+             <!-- CORRECCIÓN: El name ahora es 'cantidades' -->
+            <input type="number" name="cantidades" class="form-control" placeholder="Cantidad" min="1" required>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                 <!-- CORRECCIÓN: El name ahora es 'precios' -->
+                <input type="number" name="precios" class="form-control" placeholder="Precio Compra" step="0.01" required>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <button type="button" class="btn btn-outline-danger remove-row"><i class="bi bi-trash-fill"></i></button>
+        </div>
+    </div>
+</template>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const addProductRowBtn = document.getElementById('addProductRow');
+        const productRowsContainer = document.getElementById('product-rows');
+        const template = document.getElementById('product-row-template');
+        function addRow() { const clone = template.content.cloneNode(true); productRowsContainer.appendChild(clone); }
+        addProductRowBtn.addEventListener('click', addRow);
+        productRowsContainer.addEventListener('click', function(e) { if (e.target.closest('.remove-row')) { e.target.closest('.product-row').remove(); } });
+        addRow();
+    });
+</script>

@@ -1,0 +1,42 @@
+/* =================================================================
+   HOJA DE ESTILOS DEDICADA PARA FORMULARIOS DEL PANEL DE ADMIN
+   ================================================================= */
+
+.form-view-container {
+    background-color: var(--color-surface-light); /* Fondo blanco */
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    color: var(--color-text-dark); /* Texto por defecto negro */
+}
+.form-view-container .card-header {
+    background-color: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border-light);
+}
+.form-view-container .form-label {
+    color: var(--color-text-secondary-dark);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.form-view-container .form-control,
+.form-view-container .form-select {
+    background-color: var(--color-bg-alt);
+    border-color: var(--color-border-light);
+    color: var(--color-text-dark);
+}
+.form-view-container .form-control:focus,
+.form-view-container .form-select:focus {
+    background-color: var(--color-surface-light);
+    border-color: var(--color-primary);
+    color: var(--color-text-dark);
+    box-shadow: 0 0 0 0.2rem rgba(0, 113, 227, 0.25);
+}
+.form-view-container .form-check-label {
+    color: var(--color-text-dark);
+}
+.form-view-container h5 {
+    color: var(--color-text-dark);
+    margin-top: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border-light);
+}

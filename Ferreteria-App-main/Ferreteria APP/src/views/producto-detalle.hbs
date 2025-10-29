@@ -1,0 +1,47 @@
+<div class="container my-5">
+    <div class="row g-5">
+        <!-- Columna de la Imagen -->
+        <div class="col-lg-7">
+            <div class="product-detail-card">
+                <img src="{{producto.imagen}}" class="img-fluid rounded mx-auto d-block" alt="{{producto.nombre}}" style="max-height: 500px; object-fit: contain;">
+            </div>
+        </div>
+
+        <!-- Columna de Información y Compra -->
+        <div class="col-lg-5">
+            <div class="product-detail-info">
+                <p class="category-text">{{producto.categoria_nombre}}</p>
+                <h1 class="display-5 fw-bold">{{producto.nombre}}</h1>
+                <p class="fs-3 fw-bold mb-3" style="color: var(--color-primary);">${{producto.precio_venta}}</p>
+                <p class="lead" style="color: var(--color-text-secondary);">{{producto.descripcion}}</p>
+
+                <hr class="my-4" style="border-color: var(--color-border);">
+
+                <!-- Opciones de Compra -->
+                <div class="d-grid gap-3">
+                    <!-- Botón "Añadir al Carrito" (sin cambios) -->
+                    <button class="btn btn-primary btn-lg add-to-cart-btn" data-id="{{producto.id_producto}}">
+                        <i class="bi bi-cart-plus-fill me-2"></i> Añadir al Carrito
+                    </button>
+                    
+                    <!-- ================== BOTÓN "COMPRAR AHORA" CORREGIDO ================== -->
+                    <!-- Lo convertimos en un enlace <a> con un ID y los datos del producto -->
+                    <a href="#" id="buy-now-btn" class="btn btn-success btn-lg" data-id="{{producto.id_producto}}">
+                        <i class="bi bi-bag-check-fill me-2"></i> Comprar Ahora
+                    </a>
+                    <!-- ===================================================================== -->
+                </div>
+
+                <hr class="my-4" style="border-color: var(--color-border);">
+
+                <div>
+                    <h5 class="mb-3">Métodos de Pago Seguros</h5>
+                    <div class="payment-methods">
+                        <i class="bi bi-credit-card-2-front-fill fs-2 me-2"></i>
+                        <i class="bi bi-paypal fs-2 me-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

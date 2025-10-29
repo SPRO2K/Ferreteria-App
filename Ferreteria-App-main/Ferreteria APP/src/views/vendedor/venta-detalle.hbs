@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card admin-card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">Recibo de Venta #{{venta.id_venta}}</h3>
+                <a href="/vendedor/historial" class="btn btn-sm btn-secondary"><i class="bi bi-arrow-left"></i> Volver al Historial</a>
+            </div>
+            <div class="card-body p-4">
+                <div class="row mb-4">
+                    <div class="col-sm-6">
+                        <strong>Fecha:</strong> {{venta.fecha}}<br>
+                        <strong>Sucursal:</strong> {{venta.sucursal_nombre}}
+                    </div>
+                    <div class="col-sm-6 text-sm-end">
+                        <strong>Cliente:</strong> {{venta.cliente_nombre}}<br>
+                        <strong>Atendido por:</strong> {{venta.vendedor_nombre}}
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-end">Precio Unitario</th>
+                                <th class="text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each detalles}}
+                            <tr>
+                                <td>{{this.producto_nombre}}</td>
+                                <td class="text-center">{{this.cantidad}}</td>
+                                <td class="text-end">${{this.precio_unitario}}</td>
+                                <td class="text-end">${{multiply this.cantidad this.precio_unitario}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                        <tfoot class="fw-bold">
+                            <tr>
+                                <td colspan="3" class="text-end">Total</td>
+                                <td class="text-end fs-5" style="color: var(--color-primary);">${{venta.total}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary" onclick="window.print();"><i class="bi bi-printer-fill me-2"></i> Imprimir Recibo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

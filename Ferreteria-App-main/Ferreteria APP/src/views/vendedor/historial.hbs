@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Mi Historial de Ventas</h1>
+    <a href="/vendedor" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver al Panel</a>
+</div>
+
+<div class="card admin-card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>ID Venta</th>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th class="text-end">Total</th>
+                        <th class="text-center">Método de Pago</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each ventas}}
+                    <tr>
+                        <td>#{{this.id_venta}}</td>
+                        <td>{{this.fecha}}</td>
+                        <td>{{this.cliente_nombre}}</td>
+                        <td class="text-end" style="color: var(--color-primary);">${{this.total}}</td>
+                        <td class="text-center"><span class="badge bg-secondary">{{this.metodo_pago}}</span></td>
+                        <td class="text-end">
+                            <a href="/vendedor/venta/{{this.id_venta}}" class="btn btn-sm btn-outline-primary">Ver Detalle</a>
+                        </td>
+                    </tr>
+                    {{else}}
+                    <tr><td colspan="6" class="text-center p-4">No has realizado ninguna venta todavía.</td></tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

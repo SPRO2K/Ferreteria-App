@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-white">Historial General de Ventas</h1>
+    <a href="/dashboard" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver al Dashboard</a>
+</div>
+<div class="card admin-card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>ID Venta</th>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Vendedor</th>
+                        <th class="text-end">Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each ventas}}
+                    <tr>
+                        <td>#{{this.id_venta}}</td>
+                        <td>{{this.fecha}}</td>
+                        <td>{{this.cliente_nombre}}</td>
+                        <td>{{this.vendedor_nombre}}</td>
+                        <td class="text-end" style="color: var(--color-primary);">${{this.total}}</td>
+                        <td class="text-end">
+                            <a href="/admin/ventas/detalle/{{this.id_venta}}" class="btn btn-sm btn-outline-primary">Ver Detalle</a>
+                        </td>
+                    </tr>
+                    {{else}}
+                    <tr><td colspan="6" class="text-center p-4">No se han registrado ventas todavía.</td></tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
